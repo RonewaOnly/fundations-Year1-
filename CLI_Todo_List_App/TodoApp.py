@@ -11,6 +11,20 @@ def writerTodoFile(todoList, filename='todo.txt'):
             print(f"Todo list saved to {filename}.")
     pass
 
+def updateTodoFile(todoList, itemindex):
+    """Updates the todo list file with the current list of todo items.
+
+    Args:
+        todoList (list): The list of todo items to write to the file.
+        filename (str): The name of the file to update the todo items in.
+    """
+    if 0 < itemindex <= len(todoList):
+        updateItem = todoList[itemindex] # Get current item
+        newItem = input(f"Enter the new value for todo item {itemindex} (current: {updateItem}): ")# Prompt for new value
+        todoList[itemindex] = newItem# Update the item in the list
+    print(f"Todo item {itemindex} updated to: {newItem}")
+    return todoList # Return the updated list
+
 def readerTodoFile(filename='todo.txt'):
     """Reads the todo list from a file.
 
@@ -62,8 +76,9 @@ def main():
         print("1. Add Todo")
         print("2. View Todos")
         print("3. Save Todos to File")
-        print("4. Delete a Item")
-        print("5. Exit")
+        print("4. Update Todos File")
+        print("5. Delete a Item")
+        print("6. Exit")
         
         choice = input("Choose an option (1-5): ")
         if choice == '1':
@@ -77,12 +92,17 @@ def main():
         elif choice == '3':
             writerTodoFile(todoList)
         elif choice == '4':
+            for idx, item in enumerate(todoList, start=1):
+                print(f"{idx}. {item}")
+            indexToUpdate = int(input("Enter the number of the item to update: ")) - 1
+            updateTodoFile(todoList,indexToUpdate)
+        elif choice == '5':
             print("Your Todo List:")
             for idx, item in enumerate(todoList, start=1):
                 print(f"{idx}. {item}")
             indexToDelete = int(input("Enter the number of the item to delete: ")) - 1
             deleteTodoItem(todoList, indexToDelete)
-        elif choice == '5':
+        elif choice == '6':
             print("Exiting the Todo List App. Goodbye!")
             break
         else:
