@@ -56,7 +56,7 @@ def main():
     print("Please enter your name:")
     user = input()
     print(f"Hello, {user}! Welcome to your Todo List App.")
-    todoList =[fileToArray()]
+    todoList =fileToArray()
     while True:
         print("\nMenu:")
         print("1. Add Todo")
