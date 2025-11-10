@@ -8,7 +8,7 @@ def writerTodoFile(todoList, filename='todo.txt'):
     with open(filename, 'w') as file:
         for item in todoList:
             file.write(f"{item}\n")
-    print(f"Todo list saved to {filename}.")
+            print(f"Todo list saved to {filename}.")
     pass
 
 def readerTodoFile(filename='todo.txt'):
@@ -54,9 +54,9 @@ def fileToArray(filename='todo.txt'):
     return readerTodoFile(filename)
 def main():
     print("Please enter your name:")
-    user = input()
+    user = input() #sperate input for user name
     print(f"Hello, {user}! Welcome to your Todo List App.")
-    todoList =fileToArray()
+    todoList =fileToArray() # Load existing todos from file
     while True:
         print("\nMenu:")
         print("1. Add Todo")
