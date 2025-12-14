@@ -1,15 +1,21 @@
 from tkinter import Canvas, Frame, Scrollbar, VERTICAL, HORIZONTAL, RIGHT, LEFT, BOTTOM, TOP, X, Y, BOTH
 from tkinter import Tk, Button, Label, Entry, StringVar
-def calc():
-    result.set(eval(entry.get()))
+
+
+def animate_text():
+    global x_pos
+    canvas.move(title_text, 2, 0) # Move right
+    x_pos += 2
+    if x_pos < 300:
+        root.after(20, animate_text) # Repeat animation
 
 root = Tk()
-result = StringVar()
+root.title("Title Screen Animation")
+canvas = Canvas(root, width=500, height=300, bg="black")
+canvas.pack()
 
-entry = Entry(root)
-entry.pack()
+x_pos = 50
+title_text = canvas.create_text(x_pos, 150, text="My Game", font=("Arial", 40), fill="white")
 
-Button(root, text="=", command=calc).pack()
-Label(root, textvariable=result).pack()
-
+animate_text()
 root.mainloop()
